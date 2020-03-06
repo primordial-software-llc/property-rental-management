@@ -1,5 +1,5 @@
 ﻿
-namespace FinanceApi
+namespace Api
 {
     class Constants
     {
