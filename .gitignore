@@ -1,0 +1,10 @@
+.vs/
+
+**/bin/
+**/obj/
+**/bin/
+**/obj/
+packages/
+
+**/aws-lambda-tools-defaults.json
+**/aws-lambda-tools-defaults.test.json
