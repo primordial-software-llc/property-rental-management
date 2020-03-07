@@ -1,9 +1,9 @@
 ﻿using System;
 using AwsTools;
 
-namespace FinanceApi
+namespace Api
 {
-    public class Logger : ILogging
+    class Logger : ILogging, ILogger
     {
         public void Log(string message)
         {
