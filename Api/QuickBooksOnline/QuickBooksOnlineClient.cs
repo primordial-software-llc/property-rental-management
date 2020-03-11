@@ -36,7 +36,7 @@ namespace Api.QuickBooksOnline
             var count = QueryCount<T>(query.Replace("select * from", "select count(*)from"));
             var maxResults = 100;
             var allResults = new List<T>();
-            for (int startPosition = 1; startPosition < count; startPosition += maxResults)
+            for (int startPosition = 0; startPosition < count; startPosition += maxResults)
             {
                 var pagedQuery = $"{query} STARTPOSITION {startPosition} MAXRESULTS {maxResults}";
                 var result = Request($"query?query={HttpUtility.UrlEncode(pagedQuery)}", HttpMethod.Get);
