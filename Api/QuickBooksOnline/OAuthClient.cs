@@ -9,7 +9,7 @@ namespace Api.QuickBooksOnline
 {
     public class OAuthClient
     {
-        public static string GetAccessToken(string clientId, string clientSecret, string refreshToken)
+        public static string GetAccessToken(string clientId, string clientSecret, string refreshToken, ILogger logger)
         {
             var authBasic = $"{clientId}:{clientSecret}";
             var authBasicEncoded = Convert.ToBase64String(Encoding.UTF8.GetBytes(authBasic));
@@ -27,6 +27,10 @@ namespace Api.QuickBooksOnline
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authBasicEncoded);
             var response = client.SendAsync(request).Result;
             var result = response.Content.ReadAsStringAsync().Result;
+            if (!response.IsSuccessStatusCode)
+            {
+                logger.Log(result);
+            }
             response.EnsureSuccessStatusCode();
             var json = JObject.Parse(result);
             return json["access_token"].Value<string>();

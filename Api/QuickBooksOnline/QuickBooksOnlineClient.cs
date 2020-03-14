@@ -21,7 +21,8 @@ namespace Api.QuickBooksOnline
             AccessToken = OAuthClient.GetAccessToken(
                 Configuration.QuickBooksOnlineClientId,
                 Configuration.QuickBooksOnlineClientSecret,
-                Configuration.QuickBooksOnlineRefreshToken);
+                Configuration.QuickBooksOnlineRefreshToken,
+                logger);
         }
 
         public int QueryCount<T>(string query) where T : IQuickBooksOnlineEntity, new()

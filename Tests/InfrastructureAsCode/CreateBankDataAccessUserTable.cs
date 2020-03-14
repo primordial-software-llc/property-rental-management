@@ -1,29 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using Amazon;
+﻿using System.Collections.Generic;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.Model;
-using Amazon.Runtime;
-using Amazon.Runtime.CredentialManagement;
-using FinanceApi.Tests;
-using Tests.InfrastructureAsCode;
 using Xunit;
 
 namespace Tests.InfrastructureAsCode
 {
-    public class CreateBankDataAccessUserTable
+    public class CreateVendorsTable
     {
-        //[Fact]
+        [Fact]
         public void Create()
         {
             var request = new CreateTableRequest
             {
-                TableName = "Finance-Users",
+                TableName = "lakeland-mi-pueblo-vendors",
                 KeySchema = new List<KeySchemaElement>
                 {
                     new KeySchemaElement
                     {
-                        AttributeName = "email",
+                        AttributeName = "id",
                         KeyType = "HASH"
                     }
                 },
@@ -31,7 +25,7 @@ namespace Tests.InfrastructureAsCode
                 {
                     new AttributeDefinition
                     {
-                        AttributeName = "email",
+                        AttributeName = "id",
                         AttributeType = "S"
                     }
                 },
@@ -42,7 +36,7 @@ namespace Tests.InfrastructureAsCode
                 }
             };
             var tableFactory = new DynamoDbTableFactory(
-                new AmazonDynamoDBClient(Factory.CreateCredentialsFromDefaultProfile(), Factory.HomeRegion));
+                new AmazonDynamoDBClient(Factory.CreateCredentialsFromProfile(), Factory.HomeRegion));
             tableFactory.CreateTable(request);
         }
     }

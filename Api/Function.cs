@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
-using FinanceApi;
-using FinanceApi.DatabaseModel;
 using Api.Routes;
 using Newtonsoft.Json.Linq;
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.

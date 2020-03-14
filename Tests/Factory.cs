@@ -3,15 +3,15 @@ using Amazon;
 using Amazon.Runtime;
 using Amazon.Runtime.CredentialManagement;
 
-namespace FinanceApi.Tests
+namespace Tests
 {
     class Factory
     {
         public static RegionEndpoint HomeRegion => RegionEndpoint.USEast1;
-        public static AWSCredentials CreateCredentialsFromDefaultProfile()
+        public static AWSCredentials CreateCredentialsFromProfile()
         {
             var chain = new CredentialProfileStoreChain();
-            var profile = "deploy";
+            var profile = "lakeland-mi-pueblo";
             if (!chain.TryGetAWSCredentials(profile, out AWSCredentials awsCredentials))
             {
                 throw new Exception($"AWS credentials not found for \"{profile}\" profile.");
