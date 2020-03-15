@@ -21,10 +21,10 @@ namespace Tests
             Output = output;
         }
 
-        [Fact]
+        //[Fact]
         public void Set_Inactive_Customers()
         {
-            var client = new QuickBooksOnlineClient(new XUnitLogger(Output));
+            var client = Factory.CreateQuickBooksOnlineClient(new XUnitLogger(Output));
             var activeCustomers = client.QueryAll<Customer>("select * from Customer Where Active = true");
             var start = new DateTime(2020, 2, 1).ToString("yyyy-MM-dd");
             Parallel.ForEach(activeCustomers, new ParallelOptions { MaxDegreeOfParallelism = 5 }, customer =>
@@ -74,8 +74,8 @@ namespace Tests
             };
             try
             {
-                var threadSafeClient = new QuickBooksOnlineClient(new XUnitLogger(Output));
-                threadSafeClient.Request("customer", HttpMethod.Post, jsonUpdate.ToString());
+                var client = Factory.CreateQuickBooksOnlineClient(new XUnitLogger(Output));
+                client.Request("customer", HttpMethod.Post, jsonUpdate.ToString());
                 string updateType = active ? "active" : "inactive";
                 if (!active)
                 {

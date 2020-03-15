@@ -1,7 +1,11 @@
 ﻿using System;
 using Amazon;
+using Amazon.DynamoDBv2;
 using Amazon.Runtime;
 using Amazon.Runtime.CredentialManagement;
+using Api;
+using Api.DatabaseModel;
+using Api.QuickBooksOnline;
 
 namespace Tests
 {
@@ -17,6 +21,19 @@ namespace Tests
                 throw new Exception($"AWS credentials not found for \"{profile}\" profile.");
             }
             return awsCredentials;
+        }
+
+        public static IAmazonDynamoDB CreateAmazonDynamoDbClient()
+        {
+            return new AmazonDynamoDBClient(CreateCredentialsFromProfile(), HomeRegion);
+        }
+
+        public static QuickBooksOnlineClient CreateQuickBooksOnlineClient(ILogger logger)
+        {
+            var databaseClient = new DatabaseClient<QuickBooksOnlineConnection>(CreateAmazonDynamoDbClient());
+            var qboConnection = databaseClient.Get(new QuickBooksOnlineConnection { RealmId = Configuration.RealmId });
+            var qboClient = new QuickBooksOnlineClient(qboConnection, logger);
+            return qboClient;
         }
     }
 }

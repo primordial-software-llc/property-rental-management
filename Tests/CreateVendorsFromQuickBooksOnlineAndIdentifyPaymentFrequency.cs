@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Globalization;
 using System.Linq;
+using Amazon;
+using Amazon.DynamoDBv2;
 using Api;
 using Api.DatabaseModel;
 using Api.QuickBooksOnline;
@@ -22,28 +23,29 @@ namespace Tests
         [Fact]
         public void Run()
         {
-            var client = new QuickBooksOnlineClient(new XUnitLogger(Output));
-            var activeCustomers = client.QueryAll<Customer>("select * from Customer Where Active = true");
+            var qboClient = Factory.CreateQuickBooksOnlineClient(new XUnitLogger(Output));
+            var awsDbClient = Factory.CreateAmazonDynamoDbClient();
+
+            var activeCustomers = qboClient.QueryAll<Customer>("select * from Customer Where Active = true");
             var start = new DateTime(2020, 2, 1).ToString("yyyy-MM-dd");
 
             foreach (var customer in activeCustomers)
             {
-                var isWeekly = IsWeekly(customer.Id, start);
+                var isWeekly = IsWeekly(qboClient, customer.Id, start);
                 string paymentFrequency = isWeekly.HasValue && isWeekly.Value ? "weekly" : string.Empty;
                 Output.WriteLine($"{customer.Id}: {paymentFrequency}");
-                new VendorService().Create(int.Parse(customer.Id), true, paymentFrequency);
+                new VendorService().Create(awsDbClient, int.Parse(customer.Id), true, paymentFrequency);
             }
         }
 
-        public bool? IsWeekly(string customerId, string date)
+        public bool? IsWeekly(QuickBooksOnlineClient qboClient, string customerId, string date)
         {
-            var client = new QuickBooksOnlineClient(new XUnitLogger(Output));
-            var salesReceipts = client.QueryAll<SalesReceipt>(
+            var salesReceipts = qboClient.QueryAll<SalesReceipt>(
                 $"select * from SalesReceipt Where TxnDate >= '{date}' and CustomerRef = '{customerId}'");
-            var invoices = client.QueryAll<Invoice>(
+            var invoices = qboClient.QueryAll<Invoice>(
                 $"select * from Invoice Where TxnDate >= '{date}' and CustomerRef = '{customerId}'");
 
-            if (salesReceipts.Count() + invoices.Count() > 2)
+            if (salesReceipts.Count + invoices.Count > 2)
             {
                 return true;
             }

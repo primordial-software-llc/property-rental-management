@@ -19,14 +19,9 @@ namespace Api.DatabaseModel
         [JsonProperty("paymentFrequency")]
         public string PaymentFrequency { get; set; }
 
-        public static Dictionary<string, AttributeValue> GetKey(string email)
-        {
-            return new Dictionary<string, AttributeValue> { { "id", new AttributeValue { S = email } } };
-        }
-
         public Dictionary<string, AttributeValue> GetKey()
         {
-            return GetKey(Id);
+            return new Dictionary<string, AttributeValue> { { "id", new AttributeValue { S = Id } } };
         }
 
         public string GetTable()

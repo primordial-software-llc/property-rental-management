@@ -9,7 +9,7 @@ namespace Api
 {
     public class VendorService
     {
-        public void Create(int quickBooksOnlineId, bool isActive, string paymentFrequency)
+        public void Create(IAmazonDynamoDB dbClient, int quickBooksOnlineId, bool isActive, string paymentFrequency)
         {
             var user = new Vendor
             {
@@ -19,7 +19,6 @@ namespace Api
                 PaymentFrequency = paymentFrequency
             };
             var update = JObject.FromObject(user, new JsonSerializer { NullValueHandling = NullValueHandling.Ignore });
-            var dbClient = new AmazonDynamoDBClient();
             dbClient.PutItemAsync(
                 new Vendor().GetTable(),
                 Document.FromJson(update.ToString()).ToAttributeMap()

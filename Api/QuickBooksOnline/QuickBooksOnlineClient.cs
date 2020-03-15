@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Web;
+using Api.DatabaseModel;
 using Api.QuickBooksOnline.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -15,13 +16,13 @@ namespace Api.QuickBooksOnline
         public string AccessToken { get; set; }
         public ILogger Logger { get; }
 
-        public QuickBooksOnlineClient(ILogger logger)
+        public QuickBooksOnlineClient(QuickBooksOnlineConnection connection, ILogger logger)
         {
             Logger = logger;
             AccessToken = OAuthClient.GetAccessToken(
-                Configuration.QuickBooksOnlineClientId,
-                Configuration.QuickBooksOnlineClientSecret,
-                Configuration.QuickBooksOnlineRefreshToken,
+                connection.ClientId,
+                connection.ClientSecret,
+                connection.RefreshToken,
                 logger);
         }
 
