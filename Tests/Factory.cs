@@ -31,9 +31,7 @@ namespace Tests
         public static QuickBooksOnlineClient CreateQuickBooksOnlineClient(ILogger logger)
         {
             var databaseClient = new DatabaseClient<QuickBooksOnlineConnection>(CreateAmazonDynamoDbClient());
-            var qboConnection = databaseClient.Get(new QuickBooksOnlineConnection { RealmId = Configuration.RealmId });
-            var qboClient = new QuickBooksOnlineClient(qboConnection, logger);
-            return qboClient;
+            return new QuickBooksOnlineClient(Configuration.RealmId, databaseClient, logger);
         }
     }
 }

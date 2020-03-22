@@ -13,17 +13,26 @@ namespace Api.QuickBooksOnline
 {
     public class QuickBooksOnlineClient
     {
-        public string AccessToken { get; set; }
+        public QuickBooksOnlineBearerToken Token { get; set; }
         public ILogger Logger { get; }
 
-        public QuickBooksOnlineClient(QuickBooksOnlineConnection connection, ILogger logger)
+        public QuickBooksOnlineClient(string realmId, DatabaseClient<QuickBooksOnlineConnection> dbClient, ILogger logger)
         {
             Logger = logger;
-            AccessToken = OAuthClient.GetAccessToken(
-                connection.ClientId,
-                connection.ClientSecret,
-                connection.RefreshToken,
+            var qboConnection = dbClient.Get(new QuickBooksOnlineConnection { RealmId = realmId });
+            Token = OAuthClient.GetAccessToken(
+                qboConnection.ClientId,
+                qboConnection.ClientSecret,
+                qboConnection.RefreshToken,
                 logger);
+            dbClient.Update(
+                qboConnection.GetKey(),
+                new QuickBooksOnlineConnection
+                {
+                    AccessToken = Token.AccessToken,
+                    RefreshToken = Token.RefreshToken
+                });
+            // Token will get stale during process, more work needs to be done, but that is why the token isn't injected. Token has to be retreived in the client to do the refresh mid-process.
         }
 
         public int QueryCount<T>(string query) where T : IQuickBooksOnlineEntity, new()
@@ -65,7 +74,7 @@ namespace Api.QuickBooksOnline
         public string Request(string path, HttpMethod method, string body = null)
         {
             var client = new HttpClient { BaseAddress = new Uri("https://quickbooks.api.intuit.com") };
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AccessToken);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.AccessToken);
 
             var relativePath = $"/v3/company/{Configuration.RealmId}/{path}";
             var request = new HttpRequestMessage(method, relativePath);

@@ -20,8 +20,7 @@ namespace Api.Reports
         {
             var awsDbClient = new AmazonDynamoDBClient(RegionEndpoint.USEast1);
             var databaseClient = new DatabaseClient<QuickBooksOnlineConnection>(awsDbClient);
-            var qboConnection = databaseClient.Get(new QuickBooksOnlineConnection { RealmId = Configuration.RealmId });
-            var qboClient = new QuickBooksOnlineClient(qboConnection, logger);
+            var qboClient = new QuickBooksOnlineClient(Configuration.RealmId, databaseClient, logger);
             var rentalCustomerIds = new List<int> { CUSTOMER_PARKING_A, CUSTOMER_PARKING_B, CUSTOMER_BAR_A, CUSTOMER_BAR_B, CUSTOMER_RESTAURANT };
 
             var salesReceipts = qboClient.QueryAll<SalesReceipt>($"select * from SalesReceipt Where TxnDate = '{reportDate}'")

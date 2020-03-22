@@ -1,9 +1,10 @@
 ﻿using Api;
+using AwsTools;
 using Xunit.Abstractions;
 
 namespace Tests
 {
-    class XUnitLogger : ILogger
+    class XUnitLogger : ILogger, ILogging
     {
         private ITestOutputHelper Output { get; }
 

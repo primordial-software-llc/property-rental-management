@@ -21,6 +21,14 @@ namespace Tests
             Output = output;
         }
 
+        [Fact]
+        public void GetCustomerCount()
+        {
+            var client = Factory.CreateQuickBooksOnlineClient(new XUnitLogger(Output));
+            var customers = client.QueryAll<Customer>("select * from customer");
+            Output.WriteLine(customers.Count.ToString());
+        }
+
         //[Fact]
         public void Set_Inactive_Customers()
         {
