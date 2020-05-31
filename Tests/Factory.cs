@@ -9,7 +9,7 @@ using Api.QuickBooksOnline;
 
 namespace Tests
 {
-    class Factory
+    public class Factory
     {
         public static RegionEndpoint HomeRegion => RegionEndpoint.USEast1;
         public static AWSCredentials CreateCredentialsFromProfile()

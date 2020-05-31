@@ -21,8 +21,9 @@ namespace Tests.Reports
         [Fact]
         public void PrintDailyIncome()
         {
-            var reportDate = DateTime.Now.ToString("yyyy-MM-dd");
-            DailyIncomeReport.PrintReport(reportDate, new XUnitLogger(Output));
+            var reportDate = new DateTime(2020, 3, 15).ToString("yyyy-MM-dd");
+            DailyIncomeReport.PrintReport(reportDate, new XUnitLogger(Output),
+                Factory.CreateQuickBooksOnlineClient(new XUnitLogger(Output)));
         }
 
     }
