@@ -1,9 +1,9 @@
 ﻿using System;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DocumentModel;
-using Api.DatabaseModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using PropertyRentalManagement.DatabaseModel;
 
 namespace Api
 {

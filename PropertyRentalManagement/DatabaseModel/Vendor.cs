@@ -3,7 +3,7 @@ using Amazon.DynamoDBv2.Model;
 using AwsTools;
 using Newtonsoft.Json;
 
-namespace Api.DatabaseModel
+namespace PropertyRentalManagement.DatabaseModel
 {
     public class Vendor : IModel
     {

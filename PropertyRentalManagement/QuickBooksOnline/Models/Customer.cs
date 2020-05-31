@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
-namespace Api.QuickBooksOnline.Models
+namespace PropertyRentalManagement.QuickBooksOnline.Models
 {
     public class Customer : IQuickBooksOnlineEntity
     {

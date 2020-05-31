@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Api.QuickBooksOnline;
-using Api.QuickBooksOnline.Models;
+using PropertyRentalManagement.QuickBooksOnline;
+using PropertyRentalManagement.QuickBooksOnline.Models;
 
-namespace Api.Reports
+namespace PropertyRentalManagement.Reports
 {
     public class DailyIncomeReport
     {

@@ -3,7 +3,7 @@ using Amazon.DynamoDBv2.Model;
 using AwsTools;
 using Newtonsoft.Json;
 
-namespace Api.DatabaseModel
+namespace PropertyRentalManagement.DatabaseModel
 {
     public class QuickBooksOnlineConnection : IModel
     {
@@ -25,7 +25,6 @@ namespace Api.DatabaseModel
         public Dictionary<string, AttributeValue> GetKey()
         {
             return new Dictionary<string, AttributeValue> { { "realm-id", new AttributeValue { S = RealmId } } };
-
         }
 
         public string GetTable()

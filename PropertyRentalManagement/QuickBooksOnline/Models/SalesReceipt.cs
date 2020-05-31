@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Api.QuickBooksOnline.Models
+namespace PropertyRentalManagement.QuickBooksOnline.Models
 {
     public class SalesReceipt : IQuickBooksOnlineEntity
     {

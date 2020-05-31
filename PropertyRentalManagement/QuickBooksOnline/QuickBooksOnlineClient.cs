@@ -4,12 +4,12 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Web;
-using Api.DatabaseModel;
-using Api.QuickBooksOnline.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using PropertyRentalManagement.DatabaseModel;
+using PropertyRentalManagement.QuickBooksOnline.Models;
 
-namespace Api.QuickBooksOnline
+namespace PropertyRentalManagement.QuickBooksOnline
 {
     public class QuickBooksOnlineClient
     {

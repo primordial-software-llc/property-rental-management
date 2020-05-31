@@ -2,13 +2,13 @@
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Api.QuickBooksOnline;
-using Api.QuickBooksOnline.Models;
+using PropertyRentalManagement.QuickBooksOnline;
+using PropertyRentalManagement.QuickBooksOnline.Models;
 using Newtonsoft.Json.Linq;
 using Xunit;
 using Xunit.Abstractions;
-using Customer = Api.QuickBooksOnline.Models.Customer;
-using Invoice = Api.QuickBooksOnline.Models.Invoice;
+using Customer = PropertyRentalManagement.QuickBooksOnline.Models.Customer;
+using Invoice = PropertyRentalManagement.QuickBooksOnline.Models.Invoice;
 
 namespace Tests
 {

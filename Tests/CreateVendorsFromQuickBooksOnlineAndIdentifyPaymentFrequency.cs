@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Linq;
-using Amazon;
-using Amazon.DynamoDBv2;
 using Api;
-using Api.DatabaseModel;
-using Api.QuickBooksOnline;
-using Api.QuickBooksOnline.Models;
+using PropertyRentalManagement.QuickBooksOnline;
+using PropertyRentalManagement.QuickBooksOnline.Models;
 using Xunit;
 using Xunit.Abstractions;
 

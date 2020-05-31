@@ -1,5 +1,5 @@
 ﻿using System;
-using Api.Reports;
+using PropertyRentalManagement.Reports;
 using Xunit;
 using Xunit.Abstractions;
 

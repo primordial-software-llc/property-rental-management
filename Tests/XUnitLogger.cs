@@ -1,4 +1,4 @@
-﻿using Api;
+﻿using PropertyRentalManagement;
 using Xunit.Abstractions;
 
 namespace Tests

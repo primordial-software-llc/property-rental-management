@@ -1,7 +1,7 @@
 ﻿
-namespace Api
+namespace PropertyRentalManagement
 {
-    class Constants
+    public class Constants
     {
         public const string JSON_EMPTY = "{}";
     }

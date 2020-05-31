@@ -3,7 +3,7 @@ using Amazon.DynamoDBv2.DocumentModel;
 using AwsTools;
 using Newtonsoft.Json;
 
-namespace Api
+namespace PropertyRentalManagement
 {
     public class DatabaseClient<T> where T : IModel, new()
     {
