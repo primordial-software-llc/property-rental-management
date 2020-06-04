@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Api.QuickBooksOnline.Models
+namespace PropertyRentalManagement.QuickBooksOnline.Models
 {
     public class Purchase : IQuickBooksOnlineEntity
     {
@@ -25,6 +25,9 @@ namespace Api.QuickBooksOnline.Models
 
         [JsonProperty("PrivateNote")]
         public string PrivateNote { get; set; }
+
+        [JsonProperty("EntityRef")]
+        public Reference EntityRef { get; set; }
 
         [JsonIgnore]
         public string EntityName => "Purchase";

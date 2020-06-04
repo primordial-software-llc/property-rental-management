@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Api.QuickBooksOnline
+namespace PropertyRentalManagement.QuickBooksOnline
 {
     public class QuickBooksOnlineBearerToken
 	{
