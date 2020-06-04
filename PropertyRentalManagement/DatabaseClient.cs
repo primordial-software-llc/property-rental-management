@@ -6,7 +6,7 @@ using AwsTools;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Api
+namespace PropertyRentalManagement
 {
     public class DatabaseClient<T> where T : IModel, new()
     {

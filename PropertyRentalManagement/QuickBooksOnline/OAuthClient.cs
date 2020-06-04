@@ -5,7 +5,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Api.QuickBooksOnline
+namespace PropertyRentalManagement.QuickBooksOnline
 {
     public class OAuthClient
     {

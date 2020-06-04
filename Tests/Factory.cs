@@ -3,13 +3,13 @@ using Amazon;
 using Amazon.DynamoDBv2;
 using Amazon.Runtime;
 using Amazon.Runtime.CredentialManagement;
-using Api;
-using Api.DatabaseModel;
-using Api.QuickBooksOnline;
+using PropertyRentalManagement;
+using PropertyRentalManagement.DatabaseModel;
+using PropertyRentalManagement.QuickBooksOnline;
 
 namespace Tests
 {
-    class Factory
+    public class Factory
     {
         public static RegionEndpoint HomeRegion => RegionEndpoint.USEast1;
         public static AWSCredentials CreateCredentialsFromProfile()

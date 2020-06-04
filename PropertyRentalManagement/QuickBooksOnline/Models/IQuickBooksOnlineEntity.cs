@@ -1,5 +1,5 @@
 ﻿
-namespace Api.QuickBooksOnline.Models
+namespace PropertyRentalManagement.QuickBooksOnline.Models
 {
     public interface IQuickBooksOnlineEntity
     {

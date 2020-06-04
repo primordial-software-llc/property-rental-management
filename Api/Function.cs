@@ -5,6 +5,7 @@ using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
 using Api.Routes;
 using Newtonsoft.Json.Linq;
+
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
 namespace Api
@@ -39,7 +40,7 @@ namespace Api
                 else
                 {
                     response.StatusCode = 404;
-                    response.Body = Constants.JSON_EMPTY;
+                    response.Body = PropertyRentalManagement. Constants.JSON_EMPTY;
                 }
             }
             catch (Exception exception)

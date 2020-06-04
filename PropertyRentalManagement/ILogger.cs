@@ -1,5 +1,5 @@
 ﻿
-namespace Api
+namespace PropertyRentalManagement
 {
     public interface ILogger
     {

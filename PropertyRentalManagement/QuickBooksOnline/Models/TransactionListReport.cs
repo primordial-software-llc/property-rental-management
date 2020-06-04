@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Api.QuickBooksOnline
+namespace PropertyRentalManagement.QuickBooksOnline.Models
 {
     public class TransactionListReport
     {

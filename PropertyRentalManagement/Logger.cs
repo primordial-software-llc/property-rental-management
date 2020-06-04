@@ -1,9 +1,9 @@
 ﻿using System;
 using AwsTools;
 
-namespace Api
+namespace PropertyRentalManagement
 {
-    class Logger : ILogging, ILogger
+    public class Logger : ILogging, ILogger
     {
         public void Log(string message)
         {
