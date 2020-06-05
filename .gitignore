@@ -8,3 +8,6 @@ packages/
 
 **/aws-lambda-tools-defaults.json
 **/aws-lambda-tools-defaults.test.json
+
+**/ProcessBankStatements.cs
+**/ProcessBankStatementsData.cs
